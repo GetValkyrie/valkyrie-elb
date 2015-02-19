@@ -1,19 +1,12 @@
 ---
 # tasks file for valkyrie-elb
-- apt:
-    name: python-boto
-- copy:
-    src: /vagrant/boto.cfg
-    dest: /etc/boto.cfg
-    owner: root
-    group: root
-    mode: 0644
 - local_action:
     module: ec2_elb_lb
-    name: "create an ELB LB instance"
+    name: "lb-valkyrie"
     state: present
-#    zones:
-#      - us-east-1a
+    region: us-east-1
+    zones:
+      - us-east-1a
     listeners:
       - protocol: http # options are http, https, ssl, tcp
         load_balancer_port: 80
