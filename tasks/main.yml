@@ -1,5 +1,13 @@
 ---
 # tasks file for valkyrie-elb
+- apt:
+    name: python-boto
+- copy:
+    src: /vagrant/boto.cfg
+    dest: /etc/boto.cfg
+    owner: root
+    group: root
+    mode: 0644
 - local_action:
     module: ec2_elb_lb
     name: "create an ELB LB instance"
